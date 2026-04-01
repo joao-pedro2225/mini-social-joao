@@ -1,8 +1,34 @@
 let likeCount = 0;
+let curtido = false; // flag booleana
 
 function curtir() {
-  likeCount++;
-  document.getElementById("likeCount").innerText = likeCount;
+
+ if(curtido == false){
+    likeCount++;
+    curtido = true;
+    document.getElementById("likeCount").innerText = likeCount;
+ }else{
+    likeCount--;
+    curtido = false;
+    document.getElementById("likeCount").innerText = likeCount;
+ }
+
+  
+}
+function descutir() {
+
+ if(descutir == false){
+    deslikeCount++;
+    descurtido= true;
+    document.getElementById("deslikeCount").innerText = deslikeCount;
+ }else{
+    deslikeCount--;
+   descurtido = false;
+    document.getElementById("deslikeCount").innerText = deslikeCount;
+ }
+
+  
 }
 
 document.getElementById("likeBtn").addEventListener("click", curtir);
+document.getElementById("deslikeBtn").addEventListener("click", descutir);
