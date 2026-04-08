@@ -1,33 +1,43 @@
 let likeCount = 0;
-let curtido = false; // flag booleana
+let deslikeCount = 0;
+
+let curtido = false;
+let descurtido = false;
 
 function curtir() {
-
- if(curtido == false){
+  if (!curtido) {
     likeCount++;
     curtido = true;
-    document.getElementById("likeCount").innerText = likeCount;
- }else{
+
+    if (descurtido) {
+      deslikeCount--;
+      descurtido = false;
+      document.getElementById("deslikeCount").innerText = deslikeCount;
+    }
+  } else {
     likeCount--;
     curtido = false;
-    document.getElementById("likeCount").innerText = likeCount;
- }
+  }
 
-  
+  document.getElementById("likeCount").innerText = likeCount;
 }
+
 function descutir() {
-
- if(descutir == false){
+  if (!descurtido) {
     deslikeCount++;
-    descurtido= true;
-    document.getElementById("deslikeCount").innerText = deslikeCount;
- }else{
-    deslikeCount--;
-   descurtido = false;
-    document.getElementById("deslikeCount").innerText = deslikeCount;
- }
+    descurtido = true;
 
-  
+    if (curtido) {
+      likeCount--;
+      curtido = false;
+      document.getElementById("likeCount").innerText = likeCount;
+    }
+  } else {
+    deslikeCount--;
+    descurtido = false;
+  }
+
+  document.getElementById("deslikeCount").innerText = deslikeCount;
 }
 
 document.getElementById("likeBtn").addEventListener("click", curtir);
