@@ -1,44 +1,63 @@
-let likeCount = 0;
-let deslikeCount = 0;
+//=== ESTADO (dados de aplicação) ===
 
+let likeCount = 0;
+let dislikeCount = 0;
 let curtido = false;
 let descurtido = false;
 
+//=== SERVICE (regras de negócio) ===
+
 function curtir() {
-  if (!curtido) {
+  if (curtido == false){
     likeCount++;
     curtido = true;
+    document.getElementById("likeCount").innerText = likeCount;
 
-    if (descurtido) {
-      deslikeCount--;
+    if(descurtido == true){
+      dislikeCount--;
       descurtido = false;
-      document.getElementById("deslikeCount").innerText = deslikeCount;
+      document.getElementById("dislikeCount").innerText = dislikeCount;
+
     }
-  } else {
+
+  }else{
     likeCount--;
     curtido = false;
+    document.getElementById("likeCount").innerText = likeCount;
   }
 
-  document.getElementById("likeCount").innerText = likeCount;
 }
 
-function descutir() {
-  if (!descurtido) {
-    deslikeCount++;
+function descurtir() {
+  if(descurtido == false){
+    dislikeCount++;
     descurtido = true;
+    document.getElementById("dislikeCount").innerText = dislikeCount;
 
-    if (curtido) {
+    if(curtido == true){
       likeCount--;
       curtido = false;
       document.getElementById("likeCount").innerText = likeCount;
     }
-  } else {
-    deslikeCount--;
-    descurtido = false;
-  }
 
-  document.getElementById("deslikeCount").innerText = deslikeCount;
+  }
+  else{
+    dislikeCount--;
+    descurtido = false;
+    document.getElementById("dislikeCount").innerText = dislikeCount;
+  }
 }
 
-document.getElementById("likeBtn").addEventListener("click", curtir);
-document.getElementById("deslikeBtn").addEventListener("click", descutir);
+//=== CONTROLLER (intermediação)===
+
+function clicarCurtir(){
+  curtir();
+}
+function clicardescurtir(){
+  descurtir();
+}
+
+// === EVENTOS ===
+
+document.getElementById("likeBtn").addEventListener("click", clicarCurtir);
+document.getElementById("dislikeBtn").addEventListener("click", clicardescurtir);
